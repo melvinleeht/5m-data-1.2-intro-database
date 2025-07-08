@@ -279,3 +279,21 @@ Let's break `OrderLineItems` into two tables: `OrderLineItems` and `Items`.
 | 30     | Macbook  | 2000      |
 
 > `Orders` table does not satisfy 3NF. What transitive dependencies are present? How would you fix this?
+
+Split the table `Orders` into `Orders` and `Customers`
+
+`Orders` table:
+
+| OrderID | CustomerID | OrderDate  |
+| ------- | ---------- | ---------- |
+| 100     | 1          | 2021-01-01 |
+| 200     | 1          | 2021-01-02 |
+| 300     | 2          | 2021-01-03 |
+
+`Customers` table:
+
+| CustomerID | CustomerName |
+| ---------- | ------------ |
+| 1          | John         |
+| 1          | John         |
+| 2          | Mary         |

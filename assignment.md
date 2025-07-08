@@ -20,8 +20,35 @@ Each entity has the following attributes:
 
 Answer:
 
-```dbml
+```
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
 
+Table User {
+  id integer [primary key, increment]
+  username varchar
+  email varchar
+  created_at datetime
+}
+
+Table Post {
+  id integer [primary key, increment]
+  title varchar
+  body varchar [note:"Post content"]
+  user_id integer
+  status varchar
+  created_at datetime
+}
+
+Table Follows {
+  following_user_id integer [primary key, increment]
+  followed_user_id integer
+  created_at datetime
+}
+
+
+Ref: User.id < Post.user_id //  one-to-many
+Ref: User.id < Follows.followed_user_id //  one-to-many
 ```
 
 ### Question 2
@@ -37,7 +64,40 @@ There are 4 entities, think of what attributes each entity should have.
 
 Answer:
 
-```dbml
+```
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+Table Customer {
+  id integer [primary key, increment]
+  name varchar
+  address varchar
+  email varchar
+  phone varchar
+  created_at datetime
+}
+
+Table Book {
+  id integer [primary key, increment]
+  title varchar
+  author varchar
+}
+
+Table Cart {
+  id integer [primary key, increment]
+  user_id integer [unique] // Each user can only have one cart
+  created_at datetime
+}
+
+Table CartItem {
+  cart_id integer
+  book_id integer
+  quantity integer
+}
+
+
+Ref: Customer.id - Cart.user_id // one-to-one (each customer has one cart)
+Ref: Book.id < CartItem.book_id // many-to-many (one cart can have many cart items)
+Ref: Cart.id < CartItem.cart_id  // one-to-many (one book can appear in many cart items)
 
 ```
 
