@@ -42,13 +42,14 @@ Table Post {
 
 Table Follows {
   following_user_id integer [primary key, increment]
-  followed_user_id integer
+  followed_user_id integer [primary key, increment]
   created_at datetime
 }
 
 
 Ref: User.id < Post.user_id //  one-to-many
-Ref: User.id < Follows.followed_user_id //  one-to-many
+Ref: User.id < Follows.following_user_id //  one-to-many
+Ref: User.id < Follows.followed_user_id// one-to-many (user is followed by many)
 ```
 
 ### Question 2
